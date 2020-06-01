@@ -1,5 +1,6 @@
-const app = require('express')();
 const ArrayList = require('arraylist');
+
+const app = require('express')();
 const http = require('http').Server(app);
 const io = require('socket.io')(http);
 
@@ -19,7 +20,7 @@ io.on('connection', function (socket) {
       console.log('[INFO] A proteus client was removed!');
     } else if (clients.contains(socket)) {
       clients.removeElement(socket);
-      console.log('[INFO] A client was removed!');
+      console.log('[INFO] A user client was removed!');
     }
   });
 
@@ -30,47 +31,49 @@ io.on('connection', function (socket) {
     console.log('[INFO] New proteus client!')
     proteus.add(socket);
 
-    socket.emit('speedup', undefined); // test
+    socket.on('wheat', (data) => {
+
+    })
 
   });
 
   // define socket as client
-  socket.on('setclient', function (data) {
+  socket.on('setclient', (data) => {
 
     clients.add(socket);
     console.log('[INFO] New user client from ' + data + ' device!')
 
     // acelerar
-    socket.on('speedup', function (data) {
+    socket.on('speedup', (data) => {
       console.log("[ACCION] Llego la instrucción SPEEDUP desde el usuario.")
     });
 
     // frenos
-    socket.on('brake', function (data) {
+    socket.on('brake', (data) => {
       console.log("[ACCION] Llego la instruccion BRAKE desde el usuario.");
       broadcastProteus('brake', undefined);
     });
 
     // arado
-    socket.on('plow', function (data) {
+    socket.on('plow', (data) => {
       console.log("[ACCION] Llego la instruccion PLOW desde el usuario.");
       broadcastProteus('plow', undefined);
     });
 
     // tanque de heno
-    socket.on('wheat', function (data) {
+    socket.on('wheat', (data) => {
       console.log("Trigo: 10")
       broadcastProteus('wheat', '10')
     });
 
     // vaciar el tanque
-    socket.on('empty', function (data) {
+    socket.on('empty', (data) => {
       console.log("Vaciar el Tanque")
       broadcastProteus('empty', undefined);
     });
 
     // gasolina
-    socket.on('oil', function (data) {
+    socket.on('oil', (data) => {
       console.log("Oil")
       broadcastProteus('oil', '10');
     });
