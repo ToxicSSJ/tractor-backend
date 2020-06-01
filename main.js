@@ -30,46 +30,50 @@ io.on('connection', function (socket) {
     console.log('[INFO] New proteus client!')
     proteus.add(socket);
 
-    socket.emit('speedup', undefined);
-
-    // acelerar
-    socket.on('speedup', function (data) {
-      console.log("Acelerar");
-    });
-
-    // frenos
-    socket.on('brake', function (data) {
-      console.log("Acelerar");
-    });
-
-    // arado
-    socket.on('plow', function (data) {
-      console.log("Acelerar");
-    });
-
-    // tanque de heno
-    socket.on('wheat', function (data) {
-      console.log("Trigo: 10")
-      socket.emit('wheat', '10')
-    });
-
-    // vaciar el tanque
-    socket.on('empty', function (data) {
-      console.log("Vaciar el Tanque")
-    });
-
-    // gasolina
-    socket.on('oil', function (data) {
-      console.log("Oil")
-      socket.emit('oil', '10');
-    });
+    socket.emit('speedup', undefined); // test
 
   });
 
   // define socket as client
   socket.on('setclient', function (data) {
-    console.log('[INFO] New client!')
+
     clients.add(socket);
+    console.log('[INFO] New user client from ' + data + ' device!')
+
+    // acelerar
+    socket.on('speedup', function (data) {
+      console.log("[ACCION] Llego la instrucción SPEEDUP desde el usuario.")
+    });
+
+    // frenos
+    socket.on('brake', function (data) {
+      console.log("[ACCION] Llego la instruccion BRAKE desde el usuario.");
+      broadcastProteus('brake', undefined);
+    });
+
+    // arado
+    socket.on('plow', function (data) {
+      console.log("[ACCION] Llego la instruccion PLOW desde el usuario.");
+      broadcastProteus('plow', undefined);
+    });
+
+    // tanque de heno
+    socket.on('wheat', function (data) {
+      console.log("Trigo: 10")
+      broadcastProteus('wheat', '10')
+    });
+
+    // vaciar el tanque
+    socket.on('empty', function (data) {
+      console.log("Vaciar el Tanque")
+      broadcastProteus('empty', undefined);
+    });
+
+    // gasolina
+    socket.on('oil', function (data) {
+      console.log("Oil")
+      broadcastProteus('oil', '10');
+    });
 
   });
 
@@ -86,5 +90,5 @@ function broadcastProteus(key, data) {
 }
 
 http.listen(8080, function () {
-  console.log('listening on *:8080');
+  console.log('[SERVER] Listening on *:8080!');
 });
