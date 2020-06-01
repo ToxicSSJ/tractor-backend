@@ -16,7 +16,6 @@ var opened = false;
 port.on('open', () => {
   opened = true;
   console.log("[PROTEUS] Puerto serial " + literalport + " abierto y conectado!");
-  port.write('speedup');
 });
 
 parser.on('data', (data) => {

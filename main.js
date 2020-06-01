@@ -62,7 +62,8 @@ io.on('connection', (socket) => {
 
     // acelerar
     socket.on('speedup', (data) => {
-      console.log("[ACCION] Llego la instrucción SPEEDUP desde el usuario.")
+      console.log("[ACCION] Llego la instrucción SPEEDUP desde el usuario.");
+      broadcastProteus('speedup', undefined);
       broadcastClients('status', '[SERVER] Acelerando tractor...');
     });
 
@@ -99,6 +100,20 @@ io.on('connection', (socket) => {
       console.log("[ACCION] Llego la instrucción OIL desde el usuario.")
       broadcastProteus('oil', undefined);
       broadcastClients('status', '[SERVER] Obteniendo gasolina actual del tractor...');
+    });
+
+    // luces traseras
+    socket.on('backlights', (data) => {
+      console.log("[ACCION] Llego la instrucción BACKLIGHTS desde el usuario.")
+      broadcastProteus('backlights', undefined);
+      broadcastClients('status', '[SERVER] Cambiando de estado las luces traseras...');
+    });
+
+    // luces frontales
+    socket.on('frontlights', (data) => {
+      console.log("[ACCION] Llego la instrucción FRONTLIGHTS desde el usuario.")
+      broadcastProteus('frontlights', undefined);
+      broadcastClients('status', '[SERVER] Cambiando de estado las luces delanteras...');
     });
 
   });
