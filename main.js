@@ -56,7 +56,7 @@ io.on('connection', (socket) => {
     // acelerar
     socket.on('speedup', (data) => {
       console.log("[ACCION] Llego la instrucción SPEEDUP desde el usuario.")
-      socket.emit('status', 'Acelerando tractor');
+      broadcastClients('status', 'Acelerando tractor');
     });
 
     // frenos
@@ -94,14 +94,12 @@ io.on('connection', (socket) => {
 });
 
 function broadcastClients(key, data) {
-  for (socket in clients) {
-    console.log(socket);
+  for (let socket of clients)
     socket.emit(key, data);
-  }
 }
 
 function broadcastProteus(key, data) {
-  for (socket in proteus)
+  for (let socket of proteus)
     socket.emit(key, data);
 }
 
