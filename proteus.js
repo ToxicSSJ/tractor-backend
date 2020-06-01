@@ -70,4 +70,16 @@ client.on('oil', (data) => {
   port.write('oil');
 });
 
+// When backlights is received
+client.on('backlights', (data) => {
+  console.log("[SOCKET] Cambiando estado de las luces traseras...");
+  port.write('backlights');
+});
+
+// When frontlights is received
+client.on('frontlights', (data) => {
+  console.log("[SOCKET] Cambiando estado de las luces delanteras...");
+  port.write('frontlights');
+});
+
 client.emit('setproteus', undefined); // Set this client as proteus
