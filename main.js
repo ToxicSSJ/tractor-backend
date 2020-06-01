@@ -54,6 +54,7 @@ io.on('connection', function (socket) {
     // acelerar
     socket.on('speedup', (data) => {
       console.log("[ACCION] Llego la instrucción SPEEDUP desde el usuario.")
+      broadcastClients('status', 'Acelerando tractor');
     });
 
     // frenos
