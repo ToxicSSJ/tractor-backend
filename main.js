@@ -48,13 +48,15 @@ io.on('connection', (socket) => {
       return;
     }
 
+    console.log("base -> " + socket);
+
     clients.add(socket);
     console.log('[INFO] New user client from ' + data + ' device!')
 
     // acelerar
     socket.on('speedup', (data) => {
       console.log("[ACCION] Llego la instrucción SPEEDUP desde el usuario.")
-      broadcastClients('status', 'Acelerando tractor');
+      socket.emit('status', 'Acelerando tractor');
     });
 
     // frenos
