@@ -1,5 +1,5 @@
 const io = require("socket.io-client");
-const client = io.connect("http://localhost:8080");
+const client = io.connect("http://51.15.209.191:8080");
 
 const literalport = 'COM2';
 
