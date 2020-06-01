@@ -92,8 +92,10 @@ io.on('connection', (socket) => {
 });
 
 function broadcastClients(key, data) {
-  for (socket in clients)
+  for (socket in clients) {
+    console.log(socket);
     socket.emit(key, data);
+  }
 }
 
 function broadcastProteus(key, data) {
