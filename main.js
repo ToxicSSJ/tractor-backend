@@ -36,7 +36,15 @@ io.on('connection', (socket) => {
     proteus.add(socket);
 
     socket.on('wheat', (data) => {
+      broadcastClients('wheat', data)
+    })
 
+    socket.on('oil', (data) => {
+      broadcastClients('oil', data);
+    })
+
+    socket.on('status', (data) => {
+      broadcastClients('status', data);
     })
 
   });
@@ -48,45 +56,48 @@ io.on('connection', (socket) => {
       return;
     }
 
-    console.log("base -> " + socket);
-
     clients.add(socket);
     console.log('[INFO] New user client from ' + data + ' device!')
 
     // acelerar
     socket.on('speedup', (data) => {
       console.log("[ACCION] Llego la instrucción SPEEDUP desde el usuario.")
-      broadcastClients('status', 'Acelerando tractor');
+      broadcastClients('status', '[SERVER] Acelerando tractor...');
     });
 
     // frenos
     socket.on('brake', (data) => {
       console.log("[ACCION] Llego la instruccion BRAKE desde el usuario.");
       broadcastProteus('brake', undefined);
+      broadcastClients('status', '[SERVER] Frenando tractor...');
     });
 
     // arado
     socket.on('plow', (data) => {
       console.log("[ACCION] Llego la instruccion PLOW desde el usuario.");
       broadcastProteus('plow', undefined);
+      broadcastClients('status', '[SERVER] Cambiando de estado al arador...');
     });
 
     // tanque de heno
     socket.on('wheat', (data) => {
-      console.log("Trigo: 10")
-      broadcastProteus('wheat', '10')
+      console.log("[ACCION] Llego la instrucción WHEAT desde el usuario.")
+      broadcastProteus('wheat', undefined)
+      broadcastClients('status', '[SERVER] Obteniendo trigo actual del tractor...');
     });
 
     // vaciar el tanque
     socket.on('empty', (data) => {
-      console.log("Vaciar el Tanque")
+      console.log("[ACCION] Llego la instrucción EMPTY desde el usuario.")
       broadcastProteus('empty', undefined);
+      broadcastClients('status', '[SERVER] Vaciendo tanque del tractor...');
     });
 
     // gasolina
     socket.on('oil', (data) => {
-      console.log("Oil")
-      broadcastProteus('oil', '10');
+      console.log("[ACCION] Llego la instrucción OIL desde el usuario.")
+      broadcastProteus('oil', undefined);
+      broadcastClients('status', '[SERVER] Obteniendo gasolina actual del tractor...');
     });
 
   });

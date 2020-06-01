@@ -65,4 +65,3 @@ client.on('oil', (data) => {
 });
 
 client.emit('setproteus', undefined); // Set this client as proteus
-client.on("test", (msg) => console.info(msg));
