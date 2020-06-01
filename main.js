@@ -27,6 +27,10 @@ io.on('connection', function (socket) {
   // define socket as proteus
   socket.on('setproteus', function (data) {
 
+    if (proteus.contains(socket)) {
+      return;
+    }
+
     // registrar cliente tipo proteus
     console.log('[INFO] New proteus client!')
     proteus.add(socket);
@@ -39,6 +43,10 @@ io.on('connection', function (socket) {
 
   // define socket as client
   socket.on('setclient', (data) => {
+
+    if (clients.contains(socket)) {
+      return;
+    }
 
     clients.add(socket);
     console.log('[INFO] New user client from ' + data + ' device!')
