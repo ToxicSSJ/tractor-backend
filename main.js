@@ -44,6 +44,7 @@ io.on('connection', (socket) => {
     })
 
     socket.on('status', (data) => {
+      console.log("[PROTEUS] Llegó información desde proteus, retransmitiendo a los usuarios...");
       broadcastClients('status', data);
     })
 
