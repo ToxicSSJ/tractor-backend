@@ -92,6 +92,6 @@ function broadcastProteus(key, data) {
     socket.emit(key, data);
 }
 
-http.listen(8080, function () {
-  console.log('[SERVER] Listening on *:8080!');
+http.listen(9000, function () {
+  console.log('[SERVER] Listening on *:9000!');
 });
