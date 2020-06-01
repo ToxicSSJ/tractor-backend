@@ -9,7 +9,7 @@ var portOpened = false;
 var clients = new ArrayList
 var proteus = new ArrayList
 
-io.on('connection', function (socket) {
+io.on('connection', (socket) => {
 
   console.log('[INFO] Connected!');
 
