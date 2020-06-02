@@ -1,33 +1,33 @@
 ## Tractor Backend
 
-Este repositorio es un componente del proyecto final de teoría de la conmutación y se basa en el desarrollo de un backend compuesto por 2 tipos de inicialización, la inicialización de tipo servidor y la de tipo proteus.
+This repository is a component of the final project of switching theory and is based on the development of a backend consisting of 2 types of initialization, server type initialization and proteus type initialization.
 
-## Requisitos
+## Requirements
 
-- Tener instalado NodeJS (https://nodejs.org/es/)
-- Clonar este repositorio
-- Ejecutar el comando `npm i` en la carpeta generada
+- Have installed NodeJS (https://nodejs.org/es/)
+- Clone this repository
+- Run `npm i` command in the generated folder
 
-## Funcionamiento con Proteus
+## Working with Proteus
 
-- Descargar los archivos del siguiente repositorio (https://github.com/Shiroke-013/Final-Conmutacion)
-- Abrir el archivo INO y el proyecto de Proteus
-- Compilar el código INO y cargar el binario en el Arduino Mega
-- Tener virtualizados los puertos COM1 y COM2, puede utilizar VirtualSerialPort (https://www.virtual-serial-port.org/es/)
-- Ejecutar el archivo `proteus.sh`
+- Download the files from the following repository (https://github.com/Shiroke-013/Final-Conmutacion)
+- Open the INO file and the Proteus project
+- Compile the INO code and load the binary into the Arduino Mega
+- Having the COM1 and COM2 ports virtualized, you can use VirtualSerialPort (https://www.virtual-serial-port.org/es/)
+- Run the file `proteus.sh`
 
-## Funcionamiento del Servidor
+## Working with the Server
 
-- Ejecutar el archivo `server.sh`
-- Comprobar el funcionamiento con el puerto *:9000
+- Run `server.sh`
+- Check operation with the port *:9000
 
 ## Instrucciones
 
-- [x] Acelerar
-- [x] Frenar
-- [x] Nivel del Trigo
-- [x] Nivel de la Gasolina
-- [x] Simulación de Arado
-- [x] Vaciar Tanque
-- [x] Luces Delanteras
-- [x] Luces Traseras
+- [x] Speedup
+- [x] Break
+- [x] Wheat Level
+- [x] Oil Level
+- [x] Plow Simulation
+- [x] Empty Tank
+- [x] Frontlights
+- [x] Backlights
