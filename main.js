@@ -11,8 +11,6 @@ var proteus = new ArrayList
 
 io.on('connection', (socket) => {
 
-  console.log('[INFO] Connected!');
-
   // cuando se desconecta
   socket.on('disconnect', function (data) {
     if (proteus.contains(socket)) {
@@ -32,7 +30,7 @@ io.on('connection', (socket) => {
     }
 
     // registrar cliente tipo proteus
-    console.log('[INFO] New proteus client!')
+    console.log('[USERS] Se ha detectado un nuevo usuario proteus!')
     proteus.add(socket);
 
     socket.on('wheat', (data) => {
@@ -58,7 +56,8 @@ io.on('connection', (socket) => {
     }
 
     clients.add(socket);
-    console.log('[INFO] New user client from ' + data + ' device!')
+    socket.emit('status', '[SERVER] Te has conectado correctamente!')
+    console.log('[USERS] Se registró un nuevo usuario cliente llamado ' + data + '!')
 
     // acelerar
     socket.on('speedup', (data) => {
